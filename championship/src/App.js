@@ -8,24 +8,25 @@ import { DataProvider } from './dataContext.js';
 
 
 function App() {
-  const [teamData, setTeamData] = useState(0);
-  const [matchData, setMatchData] = useState(0);
+  const [appData, setAppData] = useState({
+    teamData: 'teamData',
+    matchData: 'matchData',
+  });
 
   const handleTeamInput = (input) => {
-    setTeamData(input);
-    console.log(input);
+    setAppData({ teamData: input });
   }
 
   const handleMatchInput = (input) => {
-    setMatchData(input);
+    setAppData({ matchData: input });
   }
 
   return (
     <div className="App">
-      <DataProvider value={'hiWorld'}>
+      <DataProvider value={appData}>
         <div>
-          <InputForm inputName="Team Information input" handleInput={handleTeamInput}></InputForm>
-          <InputForm inputName="Match Information input" handleInput={handleMatchInput}></InputForm>
+          <InputForm type="teamData" inputName="Team Information input" handleInput={handleTeamInput}></InputForm>
+          <InputForm type="matchData" inputName="Match Information input" handleInput={handleMatchInput}></InputForm>
         </div>
         <div>
           <Button variant="primary">Get Results</Button>{' '}
