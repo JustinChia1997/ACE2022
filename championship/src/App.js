@@ -4,13 +4,19 @@ import Button from 'react-bootstrap/Button';
 import { React, useState } from 'react';
 import InputForm from './components/inputForm.js';
 import { DataProvider } from './dataContext.js';
+import resultCalculator from './services/resultCalculator.js';
 
 
 
 function App() {
+  resultCalculator();
+  const defaultData = {
+    teamData: `team`,
+    matchData: 'match',
+  }
+
   const [appData, setAppData] = useState({
-    teamData: 'teamData',
-    matchData: 'matchData',
+    ...defaultData
   });
 
   const handleTeamInput = (input) => {
@@ -19,6 +25,10 @@ function App() {
 
   const handleMatchInput = (input) => {
     setAppData({ matchData: input });
+  }
+
+  const resetData = () => {
+    setAppData({ ...defaultData });
   }
 
   return (
@@ -30,7 +40,7 @@ function App() {
         </div>
         <div>
           <Button variant="primary">Get Results</Button>{' '}
-          <Button variant="secondary">Reset</Button>{' '}
+          <Button variant="secondary" onClick={resetData} >Reset</Button>{' '}
         </div>
       </DataProvider>
     </div>
