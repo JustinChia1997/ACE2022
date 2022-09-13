@@ -1,6 +1,11 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was made using react.
+
+## Installation instructions
+1. install node js, this project was built on node v14.1.0
+2. run `npm install` in this current directory to install all dependencies.
+3. use `npm start` to run the web application as shown below
 
 ## Available Scripts
 
@@ -13,6 +18,29 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### `npm test`
 
