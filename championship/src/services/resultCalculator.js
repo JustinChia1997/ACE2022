@@ -74,84 +74,29 @@ function comparisonFunction(x, y) {
     return -1;
   }
   if (dateX[1] > dateY[1]) {
-    //comparison for month
     return 1;
   } else if (dateX[1] === dateY[1] && dateX[0] > dateY[0]) {
-    //comparison for day
     return 1;
   }
   return 0;
 }
 
 function generateFinalScore(teamDataMap) {
-  //   console.log('generate Final Score');
-  //   console.log(teamDataMap);
   let teamDataMapList = Object.keys(teamDataMap).map((key) => {
     return Object.assign(teamDataMap[key], { name: key });
   });
-  //   console.log(teamDataMapList);
   let group1 = teamDataMapList.filter((item) => {
     return item['teamNumber'] == 1;
   });
   let group2 = teamDataMapList.filter((item) => {
     return item['teamNumber'] == 2;
   });
-  //   console.log(group1);
-  //   console.log(group2);
-  //Sort the data and done.
   const group1Sorted = group1.sort(comparisonFunction);
   const group2Sorted = group2.sort(comparisonFunction);
-  //   console.log('sorted');
-  //   console.log(group1Sorted);
-  //   console.log(group2Sorted);
   return [group1Sorted, group2Sorted];
 }
 
 function resultCalculator(teamData, matchData) {
-  //   const teamData = `teamA 01/05 1
-  //     teamB 02/05 1
-  //     teamC 03/04 1
-  //     teamD 04/06 1
-  //     teamE 05/06 1
-  //     teamF 15/06 1
-  //     teamG 14/06 2
-  //     teamH 13/06 2
-  //     teamI 12/06 2
-  //     teamJ 11/06 2
-  //     teamK 10/06 2
-  //     teamL 27/06 2
-  //         `;
-  //   let teamMatchData = `teamA teamB 0 1
-  //         teamA teamC 1 3
-  //         teamA teamD 2 2
-  //         teamA teamE 2 4
-  //         teamA teamF 3 3
-  //         teamB teamC 0 1
-  //         teamB teamD 2 2
-  //         teamB teamE 4 0
-  //         teamB teamF 0 0
-  //         teamC teamD 2 0
-  //         teamC teamE 0 0
-  //         teamC teamF 1 0
-  //         teamD teamE 0 3
-  //         teamD teamF 2 1
-  //         teamE teamF 3 4
-  //         teamG teamH 3 2
-  //         teamG teamI 0 4
-  //         teamG teamJ 1 0
-  //         teamG teamK 1 4
-  //         teamG teamL 1 4
-  //         teamH teamI 2 0
-  //         teamH teamJ 3 0
-  //         teamH teamK 3 4
-  //         teamH teamL 0 1
-  //         teamI teamJ 2 1
-  //         teamI teamK 3 0
-  //         teamI teamL 1 3
-  //         teamJ teamK 1 4
-  //         teamJ teamL 0 3
-  //         teamK teamL 0 0
-  //         `;
   console.log('function is running');
   let teamDataMap = generateBasicTeamData(teamData);
   generateScoreMap(matchData, teamDataMap);

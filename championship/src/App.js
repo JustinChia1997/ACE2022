@@ -33,14 +33,12 @@ function App() {
 
   const resetData = () => {
     setAppData({ ...defaultData });
-    handleShow();
   };
 
   const getResult = () => {
-    console.log(appData.teamData);
-    console.log(appData.matchData);
     let finalResult = resultCalculator(appData.teamData, appData.matchData);
-    console.log(finalResult);
+    setAppData((prevState) => ({ ...prevState, finalResult: finalResult }));
+    handleShow();
   };
 
   return (
@@ -70,7 +68,36 @@ function App() {
           <Modal.Header closeButton>
             <Modal.Title>Results from Championships</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+          <Modal.Body>
+            {appData.finalResult ? (
+              <>
+                <div>
+                  <h1>Winners from Group 1:</h1>
+                  {appData.finalResult[0].map((item, idx) => {
+                    return (
+                      <p>
+                        {idx + 1}. {item.name}
+                        {idx < 4 ? ' (qualified)' : ' (not qualified)'}
+                      </p>
+                    );
+                  })}
+                </div>
+                <div>
+                  <h1>Winners from Group 2:</h1>
+                  {appData.finalResult[1].map((item, idx) => {
+                    return (
+                      <p>
+                        {idx + 1}. {item.name}
+                        {idx < 4 ? ' (qualified)' : ' (not qualified)'}
+                      </p>
+                    );
+                  })}
+                </div>
+              </>
+            ) : (
+              <p>Result could not be computed, please check data inputs</p>
+            )}
+          </Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onClick={handleClose}>
               Close
