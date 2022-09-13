@@ -97,10 +97,15 @@ function generateFinalScore(teamDataMap) {
 }
 
 function resultCalculator(teamData, matchData) {
+  let finalResults = 0;
+  console.log('array checking');
+  if (Object.prototype.toString.call(finalResults) !== '[object Array]') {
+    console.log('yo');
+  }
   console.log('function is running');
+  if (!teamData || !matchData) return 0;
   let teamDataMap = generateBasicTeamData(teamData);
   generateScoreMap(matchData, teamDataMap);
-  let finalResults = 0;
   finalResults = generateFinalScore(teamDataMap);
   return finalResults;
 }

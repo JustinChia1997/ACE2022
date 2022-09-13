@@ -11,7 +11,7 @@ function App() {
   const defaultData = {
     teamData: 'Please enter input',
     matchData: 'Please enter input',
-    finalResult: false,
+    finalResult: 0,
   };
 
   const [appData, setAppData] = useState({
@@ -45,31 +45,33 @@ function App() {
     <div className='App'>
       <DataProvider value={appData}>
         <div>
-          <InputForm
-            type='teamData'
-            inputName='Team Information input'
-            handleInput={handleTeamInput}
-          ></InputForm>
-          <InputForm
-            type='matchData'
-            inputName='Match Information input'
-            handleInput={handleMatchInput}
-          ></InputForm>
-        </div>
-        <div>
-          <Button variant='primary' onClick={getResult}>
-            Get Results
-          </Button>{' '}
-          <Button variant='secondary' onClick={resetData}>
-            Reset
-          </Button>{' '}
+          <div>
+            <InputForm
+              type='teamData'
+              inputName='Team Information input'
+              handleInput={handleTeamInput}
+            ></InputForm>
+            <InputForm
+              type='matchData'
+              inputName='Match Information input'
+              handleInput={handleMatchInput}
+            ></InputForm>
+          </div>
+          <div>
+            <Button variant='primary' onClick={getResult}>
+              Get Results
+            </Button>{' '}
+            <Button variant='secondary' onClick={resetData}>
+              Reset
+            </Button>{' '}
+          </div>
         </div>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Results from Championships</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {appData.finalResult ? (
+            {appData.finalResult.length ? (
               <>
                 <div>
                   <h1>Winners from Group 1:</h1>
